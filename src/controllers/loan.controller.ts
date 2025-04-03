@@ -26,12 +26,10 @@ class LoanController {
   getLoansByStatus(req: Request, res: Response) {
     const { status } = req.query;
     if (!status) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Status query parameter is required",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Status query parameter is required",
+      });
     }
 
     const filteredLoans = loans.filter((loan: any) => loan.status === status);
@@ -45,9 +43,10 @@ class LoanController {
       (loan: any) => loan.applicantEmail === userEmail
     );
 
-    return res
-      .status(200)
-      .json({ success: true, data: userLoans.length ? userLoans : [] });
+    return res.status(200).json({
+      success: true,
+      data: userLoans.length ? userLoans : [],
+    });
   }
 
   getExpiredLoans(req: Request, res: Response) {
@@ -83,4 +82,4 @@ class LoanController {
   }
 }
 
-export default new LoanController()
+export default new LoanController();

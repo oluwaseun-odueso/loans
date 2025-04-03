@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticate, authorize } from "../middlewares/auth.middleware";
-import LoanController from "../controllers/loan.controller"
+import LoanController from "../controllers/loan.controller";
 
 const {
   getLoans,
@@ -8,14 +8,13 @@ const {
   getUserLoans,
   getExpiredLoans,
   deleteLoan
-  
-} = LoanController
+} = LoanController;
 
-const router = Router()
+const router = Router();
 
-router.post("/", getLoans)
-router.post("/expired", getExpiredLoans)
-router.get("/:userEmail/get", authenticate, getUserLoans);
-router.delete("/:loanId/delete", authenticate, authorize(["superadmin"]), deleteLoan);
+router.get("/", authenticate, getLoans);  
+router.get("/expired", authenticate, getExpiredLoans); 
+router.get("/:userEmail/get", authenticate, getUserLoans); 
+router.delete("/:loanId/delete", authenticate, authorize(["superadmin"]), deleteLoan); 
 
 export default router;
