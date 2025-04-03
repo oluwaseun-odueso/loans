@@ -14,9 +14,10 @@ const router = Router();
 
 router.get("/", authenticate, getLoans);
 router.get("/expired", authenticate, getExpiredLoans);
-router.get("/:userEmail/get", authenticate, getUserLoans);
+router.get("/:userEmail", authenticate, getUserLoans);
+router.get("/status", authenticate, getLoansByStatus);
 router.delete(
-  "/:loanId/delete",
+  "/:loanId",
   authenticate,
   authorize(["superAdmin"]),
   deleteLoan

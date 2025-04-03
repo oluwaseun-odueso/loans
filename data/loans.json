@@ -1,18 +1,5 @@
 [
   {
-    "id": "900199",
-    "amount": "₦5,587,858",
-    "maturityDate": "2024-03-25 14:27:37",
-    "status": "active",
-    "applicant": {
-      "name": "Alexander Janet",
-      "email": "alexanderjanet@tester.com",
-      "telephone": "+14958403848",
-      "totalLoan": "₦14,234,433,454"
-    },
-    "createdAt": "2024-01-25 14:27:37"
-  },
-  {
     "id": "740510",
     "amount": "₦3,987,654",
     "maturityDate": "2024-01-10 16:30:45",

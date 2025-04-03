@@ -59,7 +59,7 @@ class LoanController {
   }
 
   deleteLoan(req: Request, res: Response): any {
-    if (req.user?.role !== "superadmin") {
+    if (req.user?.role !== "superAdmin") {
       return res
         .status(403)
         .json({ success: false, message: "Only superadmin can delete loans" });
