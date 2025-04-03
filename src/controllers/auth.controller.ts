@@ -1,21 +1,23 @@
 import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { generateToken } from "../utils/jwt";
 
 dotenv.config();
 
-const staffDataPath = path.join(__dirname, "../../data/staffs.json");
-const staffData = JSON.parse(fs.readFileSync(staffDataPath, "utf-8"));
+
+const staffsFilePath = path.resolve("data", "staffs.json");
+
+const staffData = JSON.parse(fs.readFileSync(staffsFilePath, "utf-8"));
 
 export class AuthController {
   async login(req: Request, res: Response): Promise<any> {
     const { email, password } = req.body;
     const user = staffData.find((u: any) => u.email === email);
+    const correctPassword = staffData.find((u: any) => u.password === password);
 
-    if (!user || !bcrypt.compareSync(password, user.password)) {
+    if (!user || !correctPassword) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 

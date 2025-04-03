@@ -28,10 +28,11 @@ const apiLimiter = rateLimit({
   message: "Too many requests from this IP, please try again later.",
 });
 
-app.use("/api/v1", apiLimiter, routes);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/v1", apiLimiter, routes);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Buy Simply!");

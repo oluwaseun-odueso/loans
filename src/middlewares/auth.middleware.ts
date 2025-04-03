@@ -3,9 +3,9 @@ import { verifyToken } from "../utils/jwt";
 import fs from "fs";
 import path from "path";
 
-const STAFF_FILE_PATH = path.join(__dirname, "../../data/staffs.json");
+const staffsFilePath = path.resolve("data", "staffs.json");
 
-const staffData = JSON.parse(fs.readFileSync("../../data/staffs.json", "utf-8"));
+const staffData = JSON.parse(fs.readFileSync(staffsFilePath, "utf-8"));
 
 
 export const authenticate = async (

@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
 
-const loansFilePath = path.join(__dirname, "../../data/loans.json");
-let loans = JSON.parse(fs.readFileSync(loansFilePath, "utf-8"));
+const loansFilePath = path.resolve("data", "loans.json");
+
+const loans = JSON.parse(fs.readFileSync(loansFilePath, "utf-8"));
 
 class LoanController {
   getLoans(req: Request, res: Response): any {
