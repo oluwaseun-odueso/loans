@@ -58,13 +58,13 @@ Retrieve all loans.
 ### `GET /loans/expired`
 Get expired loans.
 
-### `GET /:userEmail/get`
+### `GET /:userEmail`
 Get loans for a specific user.
 
 ### `GET /loans/status`
 Get loans by status (query parameter: `status`).
 
-### `DELETE /:loanId/delete`
+### `DELETE /:loanId`
 Delete a loan (only for superadmin).
 
 ## Middleware
@@ -90,7 +90,7 @@ curl -X GET "http://localhost:3000/api/v1/loans/status?status=approved"
 
 ### Delete a Loan
 ```bash
-curl -X DELETE http://localhost:3000/api/v1/loans/1/delete
+curl -X DELETE http://localhost:3000/api/v1/loans/1
 ```
 
 ## Contributing
