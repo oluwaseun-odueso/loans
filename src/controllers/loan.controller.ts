@@ -41,7 +41,7 @@ class LoanController {
   getUserLoans(req: Request, res: Response): any {
     const { userEmail } = req.params;
     const userLoans = loans.filter(
-      (loan: any) => loan.applicantEmail === userEmail
+      (loan: any) => loan.applicant.email === userEmail
     );
 
     return res.status(200).json({

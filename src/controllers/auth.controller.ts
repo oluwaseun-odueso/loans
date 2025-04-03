@@ -6,7 +6,6 @@ import { generateToken } from "../utils/jwt";
 
 dotenv.config();
 
-
 const staffsFilePath = path.resolve("data", "staffs.json");
 
 const staffData = JSON.parse(fs.readFileSync(staffsFilePath, "utf-8"));
@@ -18,17 +17,25 @@ export class AuthController {
     const correctPassword = staffData.find((u: any) => u.password === password);
 
     if (!user || !correctPassword) {
-      return res.status(401).json({ success: false, message: "Invalid credentials" });
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
     }
 
-    const token = await generateToken({ id: user.id, email: user.email, role: user.role });
+    const token = await generateToken({
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    });
 
     return res.json({ success: true, token });
   }
 
   logout(req: Request, res: Response): any {
-    return res.status(200).json({ success: true, message: "Logged out successfully" });
+    return res
+      .status(200)
+      .json({ success: true, message: "Logged out successfully" });
   }
 }
 
-export default new AuthController()
+export default new AuthController();
