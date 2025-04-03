@@ -7,14 +7,19 @@ const {
   getLoansByStatus,
   getUserLoans,
   getExpiredLoans,
-  deleteLoan
+  deleteLoan,
 } = LoanController;
 
 const router = Router();
 
-router.get("/", authenticate, getLoans);  
-router.get("/expired", authenticate, getExpiredLoans); 
-router.get("/:userEmail/get", authenticate, getUserLoans); 
-router.delete("/:loanId/delete", authenticate, authorize(["superadmin"]), deleteLoan); 
+router.get("/", authenticate, getLoans);
+router.get("/expired", authenticate, getExpiredLoans);
+router.get("/:userEmail/get", authenticate, getUserLoans);
+router.delete(
+  "/:loanId/delete",
+  authenticate,
+  authorize(["superAdmin"]),
+  deleteLoan
+);
 
 export default router;
