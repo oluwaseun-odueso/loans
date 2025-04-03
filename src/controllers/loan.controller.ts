@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
 
-const loansFilePath = path.join(__dirname, "../data/loans.json");
+const loansFilePath = path.join(__dirname, "../../data/loans.json");
 let loans = JSON.parse(fs.readFileSync(loansFilePath, "utf-8"));
 
 class LoanController {
-  getLoans(req: Request, res: Response) {
+  getLoans(req: Request, res: Response): any {
     const userRole = req.user?.role;
 
     const filteredLoans = loans.map((loan: any) => ({
@@ -23,7 +23,7 @@ class LoanController {
     return res.status(200).json({ success: true, data: filteredLoans });
   }
 
-  getLoansByStatus(req: Request, res: Response) {
+  getLoansByStatus(req: Request, res: Response): any {
     const { status } = req.query;
     if (!status) {
       return res.status(400).json({
@@ -37,7 +37,7 @@ class LoanController {
     return res.status(200).json({ success: true, data: filteredLoans });
   }
 
-  getUserLoans(req: Request, res: Response) {
+  getUserLoans(req: Request, res: Response): any {
     const { userEmail } = req.params;
     const userLoans = loans.filter(
       (loan: any) => loan.applicantEmail === userEmail
@@ -49,7 +49,7 @@ class LoanController {
     });
   }
 
-  getExpiredLoans(req: Request, res: Response) {
+  getExpiredLoans(req: Request, res: Response): any {
     const expiredLoans = loans.filter(
       (loan: any) => new Date(loan.maturityDate) < new Date()
     );
@@ -57,7 +57,7 @@ class LoanController {
     return res.status(200).json({ success: true, data: expiredLoans });
   }
 
-  deleteLoan(req: Request, res: Response) {
+  deleteLoan(req: Request, res: Response): any {
     if (req.user?.role !== "superadmin") {
       return res
         .status(403)

@@ -47,7 +47,7 @@ Welcome to the Loan Management System API! This API allows you to manage loans e
    ```
 4. Start the server:
    ```bash
-   npm start
+   npm run start
    ```
 
 ## API Endpoints
@@ -80,17 +80,17 @@ Delete a loan (only for superadmin).
 ## Example Requests
 ### Get All Loans
 ```bash
-curl -X GET http://localhost:3000/loans
+curl -X GET http://localhost:3000/api/v1/loans
 ```
 
 ### Get Loans by Status
 ```bash
-curl -X GET "http://localhost:3000/loans/status?status=approved"
+curl -X GET "http://localhost:3000/api/v1/loans/status?status=approved"
 ```
 
 ### Delete a Loan
 ```bash
-curl -X DELETE http://localhost:3000/1/delete
+curl -X DELETE http://localhost:3000/api/v1/loans/1/delete
 ```
 
 ## Contributing

@@ -7,11 +7,11 @@ import { generateToken } from "../utils/jwt";
 
 dotenv.config();
 
-const staffDataPath = path.join(__dirname, "../data/staffs.json");
+const staffDataPath = path.join(__dirname, "../../data/staffs.json");
 const staffData = JSON.parse(fs.readFileSync(staffDataPath, "utf-8"));
 
 export class AuthController {
-  async login(req: Request, res: Response) {
+  async login(req: Request, res: Response): Promise<any> {
     const { email, password } = req.body;
     const user = staffData.find((u: any) => u.email === email);
 
@@ -24,7 +24,7 @@ export class AuthController {
     return res.json({ success: true, token });
   }
 
-  logout(req: Request, res: Response) {
+  logout(req: Request, res: Response): any {
     return res.status(200).json({ success: true, message: "Logged out successfully" });
   }
 }

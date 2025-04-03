@@ -3,16 +3,16 @@ import { verifyToken } from "../utils/jwt";
 import fs from "fs";
 import path from "path";
 
-const STAFF_FILE_PATH = path.join(__dirname, "../data/staffs.json");
+const STAFF_FILE_PATH = path.join(__dirname, "../../data/staffs.json");
 
-const staffData = JSON.parse(fs.readFileSync("src/staff.json", "utf-8"));
+const staffData = JSON.parse(fs.readFileSync("../../data/staffs.json", "utf-8"));
 
 
 export const authenticate = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<any> => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     return res.status(401).json({
@@ -44,7 +44,7 @@ export const authenticate = async (
   }
 };
 
-export const authorize = (roles: ("staff" | "admin" | "superAdmin")[]) => {
+export const authorize = (roles: ("staff" | "admin" | "superAdmin")[]): any => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user) {
       return res.status(403).json({
