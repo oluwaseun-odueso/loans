@@ -3,12 +3,10 @@ import { verifyToken } from "../utils/jwt";
 import fs from "fs";
 import path from "path";
 
-const STAFF_FILE_PATH = path.join(__dirname, "../data/staff.json");
+const STAFF_FILE_PATH = path.join(__dirname, "../data/staffs.json");
 
-const getStaffs = (): any[] => {
-  const data = fs.readFileSync(STAFF_FILE_PATH, "utf-8");
-  return JSON.parse(data);
-};
+const staffData = JSON.parse(fs.readFileSync("src/staff.json", "utf-8"));
+
 
 export const authenticate = async (
   req: Request,
@@ -25,10 +23,9 @@ export const authenticate = async (
 
   try {
     const decoded = verifyToken(token);
-    req.staff = decoded;
+    req.user = decoded;
 
-    const staffs = getStaffs();
-    const staff = staffs.find((staff) => staff.email === decoded.email);
+    const staff = staffData.find((staff: any) => staff.email === decoded.email);
 
     if (!staff) {
       return res.status(404).json({
@@ -49,14 +46,14 @@ export const authenticate = async (
 
 export const authorize = (roles: ("staff" | "admin" | "superAdmin")[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!req.staff) {
+    if (!req.user) {
       return res.status(403).json({
         success: false,
         message: "No user found",
       });
     }
 
-    if (!roles.includes(req.staff.role)) {
+    if (!roles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
         message: "Forbidden access",
