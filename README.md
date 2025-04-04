@@ -80,17 +80,17 @@ Delete a loan (only for superadmin).
 ## Example Requests
 ### Get All Loans
 ```bash
-curl -X GET http://localhost:3000/api/v1/loans
+curl -X GET https://loans-6rzr.onrender.com/api/v1/loans
 ```
 
 ### Get Loans by Status
 ```bash
-curl -X GET "http://localhost:3000/api/v1/loans/status?status=approved"
+curl -X GET "https://loans-6rzr.onrender.com/api/v1/loans/status?status=approved"
 ```
 
 ### Delete a Loan
 ```bash
-curl -X DELETE http://localhost:3000/api/v1/loans/1/delete
+curl -X DELETE https://loans-6rzr.onrender.com/api/v1/loans/1/delete
 ```
 
 ## Contributing
